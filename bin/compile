@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+echo "-----> Installing rtmpdump"
+# change to the the BUILD_DIR ($1)
+cd $1
+# download the binary (-O) silently (-s)
+curl https://files.slack.com/files-pri/T2W2ZPTK7-F44ALNY4B/download/rtmpdump.zip?pub_secret=7427e0c7ef -o rtmpdump.zip
+# make a directory to untar (like unzip) the binary
+mkdir -p vendor/rtmpdump
+# unzip the binary to the directory we want
+unzip rtmpdump.zip -d vendor/rtmpdump/
