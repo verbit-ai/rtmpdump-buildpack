@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "-----> Installing rtmpdump"
+echo "-----> Installing rtmpdump _v2"
 # change to the the BUILD_DIR ($1)
 cd $1
 # download the binary (-O) silently (-s)
