@@ -9,9 +9,12 @@ mkdir -p vendor/rtmpdump
 # unzip the binary to the directory we want
 unzip -qq rtmpdump.zip -d vendor/rtmpdump/
 
+APP_CHECKOUT_DIR=$1
 
-echo "exporting PATH and LIBRARY_PATH" | indent
-PROFILE_PATH="$BUILD_DIR/.profile.d/rtmpdump.sh"
-mkdir -p $(dirname $PROFILE_PATH)
-echo 'export PATH="$PATH:/app/vendor/rtmpdump"' >> $PROFILE_PATH
-echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/vendor/rtmpdump"' >> $PROFILE_PATH
+echo "-----> Adding PATH environment"
+mkdir -p "$APP_CHECKOUT_DIR"/.profile.d
+cat > "$APP_CHECKOUT_DIR"/.profile.d/path.sh <<EOF
+  #!/bin/sh
+  export PATH=\$PATH:/app/vendor/rtmpdump
+  export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/app/vendor/rtmpdump
+EOF
