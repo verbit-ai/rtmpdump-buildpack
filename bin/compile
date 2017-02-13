@@ -7,4 +7,11 @@ curl https://files.slack.com/files-pri/T2W2ZPTK7-F44ALNY4B/download/rtmpdump.zip
 # make a directory to untar (like unzip) the binary
 mkdir -p vendor/rtmpdump
 # unzip the binary to the directory we want
-unzip rtmpdump.zip -d vendor/rtmpdump/
+unzip -qq rtmpdump.zip -d vendor/rtmpdump/
+
+
+echo "exporting PATH and LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/rtmpdump.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:/app/vendor/rtmpdump"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/app/vendor/rtmpdump"' >> $PROFILE_PATH
